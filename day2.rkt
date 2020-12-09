@@ -11,9 +11,9 @@
 
 (define input (load-strings "input/d2"))
 
-(define (part1) (count identity (map valid1? input)))
+(define part1 (count identity (map valid1? input)))
 
-(define (part2) (count identity (map valid2? input)))
+(define part2 (count identity (map valid2? input)))
 
 (define (valid1? line)
   (match (parse-line line)
