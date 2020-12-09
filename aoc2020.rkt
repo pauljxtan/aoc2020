@@ -1,0 +1,13 @@
+#lang racket
+
+(require
+  (prefix-in day1: "day1.rkt")
+  (prefix-in day2: "day2.rkt")
+  (prefix-in day3: "day3.rkt"))
+
+(printf (format "1-1: ~a\n" (day1:part1)))
+(printf (format "1-2: ~a\n" (day1:part2)))
+(printf (format "2-1: ~a\n" (day2:part1)))
+(printf (format "2-2: ~a\n" (day2:part2)))
+(printf (format "3-1: ~a\n" (day3:part1)))
+(printf (format "3-2: ~a\n" (day3:part2)))
