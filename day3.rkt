@@ -9,10 +9,10 @@
 (define (part1) (move 0 0 1 3 0))
 
 (define (part2) (* (move 0 0 1 1 0)
-                 (move 0 0 1 3 0)
-                 (move 0 0 1 5 0)
-                 (move 0 0 1 7 0)
-                 (move 0 0 2 1 0)))
+                   (move 0 0 1 3 0)
+                   (move 0 0 1 5 0)
+                   (move 0 0 1 7 0)
+                   (move 0 0 2 1 0)))
 
 (define (move curr-row curr-col rows-to-move cols-to-move tree-count)
   (let* ([the-map input]
