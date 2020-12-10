@@ -21,9 +21,8 @@
          (list-tail input 1)))
 
 (define (count-any-yes group)
-  (length (remove-duplicates (string->list (string-join group "")))))
+  (set-count (list->set (string->list (string-join group "")))))
 
 (define (count-all-yes group)
   (let ([person-sets (map (lambda (p) (list->set (string->list p))) group)])
     (set-count (foldl set-intersect (first person-sets) person-sets))))
-

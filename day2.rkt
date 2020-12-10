@@ -1,11 +1,6 @@
 #lang racket
 
-(require
-  data/applicative
-  data/monad
-  megaparsack
-  megaparsack/text
-  "utils.rkt")
+(require data/applicative data/monad megaparsack megaparsack/text "utils.rkt")
 
 (provide part1 part2)
 

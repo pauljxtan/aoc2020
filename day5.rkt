@@ -27,16 +27,11 @@
   (cond 
     [(equal? str low-char) low]
     [(equal? str high-char) high]
-    [else (cond 
-            [(equal? (substring str 0 1) low-char)
-             (seat-helper (substring str 1)
-                          low-char
-                          high-char
-                          low
-                          (quotient (+ low high) 2))]
-            [(equal? (substring str 0 1) high-char)
-             (seat-helper (substring str 1)
-                          low-char
-                          high-char
-                          (+ (quotient (+ low high) 2) 1) 
-                          high)])]))
+    [else (let ([first (substring str 0 1)]
+                [rest (substring str 1)]
+                [mid (quotient (+ low high) 2)])
+            (cond 
+              [(equal? first low-char)
+               (seat-helper rest low-char high-char low mid)]
+              [(equal? first high-char)
+               (seat-helper rest low-char high-char (+ mid 1) high)]))]))
