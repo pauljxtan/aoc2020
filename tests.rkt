@@ -8,7 +8,8 @@
   (prefix-in day2: "day2.rkt")
   (prefix-in day3: "day3.rkt")
   (prefix-in day4: "day4.rkt")
-  (prefix-in day5: "day5.rkt"))
+  (prefix-in day5: "day5.rkt")
+  (prefix-in day6: "day6.rkt"))
 
 (define-test-suite 
   solution-tests
@@ -21,7 +22,9 @@
   (check-equal? (day4:part1) 226)
   (check-equal? (day4:part2) 160)
   (check-equal? (day5:part1) 922)
-  (check-equal? (day5:part2) 747))
+  (check-equal? (day5:part2) 747)
+  (check-equal? (day6:part1) 6799)
+  (check-equal? (day6:part2) 3354))
 
 (define-test-suite
   utils-tests
@@ -71,7 +74,23 @@
              (check-equal? (day5:seat-id "FFFBBBFRRR") 119)
              (check-equal? (day5:seat-id "BBFFBBFRLL") 820)))
 
+(define-test-suite
+  day6-tests
+  (test-case "count questions to which anyone answered yes"
+             (check-equal? (day6:count-any-yes '("abc")) 3)
+             (check-equal? (day6:count-any-yes '("a" "b" "c")) 3)
+             (check-equal? (day6:count-any-yes '("ab" "bc")) 3)
+             (check-equal? (day6:count-any-yes '("a" "a" "a" "a")) 1)
+             (check-equal? (day6:count-any-yes '("b")) 1))
+  (test-case "count questions to which everyone answered yes"
+             (check-equal? (day6:count-all-yes '("abc")) 3)
+             (check-equal? (day6:count-all-yes '("a" "b" "c")) 0)
+             (check-equal? (day6:count-all-yes '("ab" "bc")) 1)
+             (check-equal? (day6:count-all-yes '("a" "a" "a" "a")) 1)
+             (check-equal? (day6:count-all-yes '("b")) 1)))
+
 (run-tests utils-tests 'verbose)
 (run-tests solution-tests 'verbose)
 (run-tests day4-tests 'verbose)
 (run-tests day5-tests 'verbose)
+(run-tests day6-tests 'verbose)
