@@ -11,14 +11,14 @@
 
 (define-test-suite 
   solution-tests
-  (check-equal? day1:part1 436404)
-  (check-equal? day1:part2 274879808)
-  (check-equal? day2:part1 600)
-  (check-equal? day2:part2 245)
-  (check-equal? day3:part1 195)
-  (check-equal? day3:part2 3772314000)
-  (check-equal? day4:part1 226)
-  (check-equal? day4:part2 160))
+  (check-equal? (day1:part1) 436404)
+  (check-equal? (day1:part2) 274879808)
+  (check-equal? (day2:part1) 600)
+  (check-equal? (day2:part2) 245)
+  (check-equal? (day3:part1) 195)
+  (check-equal? (day3:part2) 3772314000)
+  (check-equal? (day4:part1) 226)
+  (check-equal? (day4:part2) 160))
 
 (define-test-suite
   utils-tests

@@ -15,9 +15,9 @@
 
 (define input (load-strings "input/d4"))
 
-(define part1 (count valid1? passports))
+(define (part1) (count valid1? passports))
 
-(define part2 (count valid2? passports))
+(define (part2) (count valid2? passports))
 
 (define passports
   (foldl (lambda (line result)

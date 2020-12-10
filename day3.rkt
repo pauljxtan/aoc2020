@@ -6,9 +6,9 @@
 
 (define input (map string->list (load-strings "input/d3")))
 
-(define part1 (move 0 0 1 3 0))
+(define (part1) (move 0 0 1 3 0))
 
-(define part2 (* (move 0 0 1 1 0)
+(define (part2) (* (move 0 0 1 1 0)
                  (move 0 0 1 3 0)
                  (move 0 0 1 5 0)
                  (move 0 0 1 7 0)

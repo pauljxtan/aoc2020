@@ -6,11 +6,11 @@
 
 (define input (load-ints "input/d1"))
 
-(define part1 (match (find-pair input 2020)
+(define (part1) (match (find-pair input 2020)
                      [(list x y) (* x y)]
                      [_ 'no-solution]))
 
-(define part2 (match (find-triplet input 2020)
+(define (part2) (match (find-triplet input 2020)
                      [(list x y z) (* x y z)]
                      ['no-triplet 'no-solution]))
 
