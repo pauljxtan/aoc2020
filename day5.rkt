@@ -1,10 +1,8 @@
 #lang racket
 
-(require "utils.rkt")
-
 (provide part1 part2 seat-id seat-row seat-col)
 
-(define input (load-strings "input/d5"))
+(define input (file->lines "input/d5"))
 
 (define (part1) (argmax identity (map seat-id input)))
 

@@ -1,7 +1,5 @@
 #lang racket
 
-(require "utils.rkt")
-
 (provide
   part1
   part2
@@ -13,21 +11,14 @@
   valid-iyr?
   valid-pid?)
 
-(define input (load-strings "input/d4"))
+(define input (file->string "input/d4"))
 
 (define (part1) (count valid1? passports))
 
 (define (part2) (count valid2? passports))
 
-(define passports
-  (foldl (lambda (line result)
-           (match line
-                  ["" (append result '(""))]
-                  [_ (list-set result
-                               (- (length result) 1)
-                               (string-append (last result) " " line))]))
-         (list (first input))
-         (list-tail input 1)))
+(define passports (map (lambda (s) (string-replace s "\n" " "))
+                       (string-split input "\n\n")))
 
 (define (valid1? passport)
   (andmap (lambda (field) (string-contains? passport field))

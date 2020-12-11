@@ -1,10 +1,10 @@
 #lang racket
 
-(require data/maybe "utils.rkt")
+(require data/maybe)
 
 (provide part1 part2)
 
-(define input (load-ints "input/d1"))
+(define input (map string->number (file->lines "input/d1")))
 
 (define (part1) (foldl * 1 (from-just! (find-pair input 2020))))
 

@@ -1,10 +1,8 @@
 #lang racket
 
-(require "utils.rkt")
-
 (provide part1 part2)
 
-(define input (map string->list (load-strings "input/d3")))
+(define input (map string->list (file->lines "input/d3")))
 
 (define (part1) (move 0 0 1 3 0))
 
