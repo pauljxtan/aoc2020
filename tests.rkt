@@ -8,7 +8,8 @@
   (prefix-in day3: "day3.rkt")
   (prefix-in day4: "day4.rkt")
   (prefix-in day5: "day5.rkt")
-  (prefix-in day6: "day6.rkt"))
+  (prefix-in day6: "day6.rkt")
+  (prefix-in day7: "day7.rkt"))
 
 (define-test-suite 
   solution-tests
@@ -23,7 +24,8 @@
   (check-equal? (day5:part1) 922)
   (check-equal? (day5:part2) 747)
   (check-equal? (day6:part1) 6799)
-  (check-equal? (day6:part2) 3354))
+  (check-equal? (day6:part2) 3354)
+  (check-equal? (day7:part1) 238))
 
 (define-test-suite
   day4-tests
@@ -79,7 +81,18 @@
              (check-equal? (day6:count-all-yes '("a" "a" "a" "a")) 1)
              (check-equal? (day6:count-all-yes '("b")) 1)))
 
+(define-test-suite
+  day7-tests
+  (test-case "builds a hash table of all bags"
+             (check-equal? (hash-ref day7:bag-hash "light red")
+                           '("shiny bronze" "mirrored gray" "dark violet"))
+             (check-equal? (hash-ref day7:bag-hash "bright white")
+                           '("posh gold" "mirrored silver"))
+             (check-equal? (hash-ref day7:bag-hash "faded blue")
+                           '("dim chartreuse" "bright coral"))))
+
 (run-tests solution-tests 'verbose)
 (run-tests day4-tests 'verbose)
 (run-tests day5-tests 'verbose)
 (run-tests day6-tests 'verbose)
+(run-tests day7-tests 'verbose)

@@ -13,16 +13,17 @@
                    (move 0 0 2 1 0)))
 
 (define (move curr-row curr-col rows-to-move cols-to-move tree-count)
-  (let* ([the-map input]
-         [num-rows (length the-map)])
-    (if (>= curr-row num-rows)
-      tree-count
-      (move (+ curr-row rows-to-move)
-            (+ curr-col cols-to-move)
-            rows-to-move
-            cols-to-move
-            (+ tree-count (if (is-tree? the-map curr-row curr-col) 1 0))))))
+  (if (>= curr-row (length input))
+    tree-count
+    (move (+ curr-row rows-to-move)
+          (+ curr-col cols-to-move)
+          rows-to-move
+          cols-to-move
+          (+ tree-count (if (is-tree? curr-row curr-col) 1 0)))))
 
-(define (is-tree? the-map row col) 
-  (let ([col-folded (remainder col (length (first the-map)))])
-    (equal? (list-ref (list-ref the-map row) col-folded) #\#)))
+(define (is-tree? row col) 
+  (let* ([col-folded ((compose (curry remainder col) length first) input)]
+         [point-func (compose (curryr list-ref col-folded)
+                              (curryr list-ref row))]
+         [point (point-func input)])
+    (equal? point #\#)))

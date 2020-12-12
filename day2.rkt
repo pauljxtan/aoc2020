@@ -12,9 +12,9 @@
   (match (parse-line line)
          [(list min-valid max-valid letter password)
           (let* ([regex-not-letter (regexp (string-append "[^" letter "]"))]
-                 [count (string-length (string-replace password
-                                                       regex-not-letter
-                                                       ""))])
+                 [count ((compose string-length
+                                  (curryr string-replace regex-not-letter ""))
+                         password)])
             (and (>= count min-valid) (<= count max-valid)))]))
 
 (define (valid2? line)

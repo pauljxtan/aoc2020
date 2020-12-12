@@ -8,12 +8,11 @@
 
 (define (part2) (foldl + 0 (map count-all-yes groups)))
 
-(define groups (map (lambda (s) (string-split s "\n"))
-                    (string-split input "\n\n")))
+(define groups (map (curryr string-split "\n") (string-split input "\n\n")))
 
 (define (count-any-yes group)
-  (set-count (list->set (string->list (string-join group "")))))
+  ((compose set-count list->set string->list) (string-join group "")))
 
 (define (count-all-yes group)
-  (let ([person-sets (map (lambda (p) (list->set (string->list p))) group)])
-    (set-count (foldl set-intersect (first person-sets) person-sets))))
+  (let ([person-sets (map (compose list->set string->list) group)])
+    (set-count (foldl set-intersect (first person-sets) (rest person-sets)))))

@@ -17,11 +17,11 @@
 
 (define (part2) (count valid2? passports))
 
-(define passports (map (lambda (s) (string-replace s "\n" " "))
+(define passports (map (curryr string-replace " " "\n")
                        (string-split input "\n\n")))
 
 (define (valid1? passport)
-  (andmap (lambda (field) (string-contains? passport field))
+  (andmap (curry string-contains? passport)
           '("byr:" "iyr:" "eyr:" "hgt:" "hcl:" "ecl:" "pid:")))
 
 (define (valid2? passport)

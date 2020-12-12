@@ -4,13 +4,12 @@
 
 (define input (file->lines "input/d5"))
 
-(define (part1) (argmax identity (map seat-id input)))
+(define (part1) (apply max (map seat-id input)))
 
 (define (part2)
-  (let* ([seat-ids (map seat-id input)]
-         [min-id (argmin identity seat-ids)]
-         [max-id (argmax identity seat-ids)])
-    (findf (lambda (id) (not (member id seat-ids))) (range min-id max-id))))
+  (let ([seat-ids (map seat-id input)])
+    (findf (lambda (id) (not (member id seat-ids)))
+           (range (apply min seat-ids) (apply max seat-ids)))))
 
 (define (seat-id seat-str)
   (let ([row (seat-row (substring seat-str 0 7))]
