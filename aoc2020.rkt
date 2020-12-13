@@ -22,3 +22,4 @@
 (printf (format "6-1: ~a\n" (day6:part1)))
 (printf (format "6-2: ~a\n" (day6:part2)))
 (printf (format "7-1: ~a\n" (day7:part1)))
+(printf (format "7-2: ~a\n" (day7:part2)))

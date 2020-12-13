@@ -25,7 +25,8 @@
   (check-equal? (day5:part2) 747)
   (check-equal? (day6:part1) 6799)
   (check-equal? (day6:part2) 3354)
-  (check-equal? (day7:part1) 238))
+  (check-equal? (day7:part1) 238)
+  (check-equal? (day7:part2) 82930))
 
 (define-test-suite
   day4-tests
@@ -83,13 +84,31 @@
 
 (define-test-suite
   day7-tests
-  (test-case "builds a hash table of all bags"
-             (check-equal? (hash-ref day7:bag-hash "light red")
-                           '("shiny bronze" "mirrored gray" "dark violet"))
-             (check-equal? (hash-ref day7:bag-hash "bright white")
-                           '("posh gold" "mirrored silver"))
-             (check-equal? (hash-ref day7:bag-hash "faded blue")
-                           '("dim chartreuse" "bright coral"))))
+  (test-case "parses a line into a bag along with the bags it contains"
+             (check-equal?
+               (day7:parse-line (string-append "light red bags contain "
+                                               "4 shiny bronze bags, "
+                                               "2 mirrored gray bags, "
+                                               "5 dark violet bags."))
+               '("light red" ((4 . "shiny bronze")
+                              (2 . "mirrored gray")
+                              (5 . "dark violet"))))
+             (check-equal?
+               (day7:parse-line (string-append "bright white bags contain "
+                                               "1 posh gold bag, "
+                                               "5 mirrored silver bags."))
+               '("bright white" ((1 . "posh gold")
+                                 (5 . "mirrored silver"))))
+             (check-equal?
+               (day7:parse-line (string-append "striped magenta bags contain "
+                                               "2 drab olive bags, "
+                                               "3 dim chartreuse bags, "
+                                               "3 plaid beige bags, "
+                                               "5 mirrored crimson bags."))
+               '("striped magenta" ((2 . "drab olive")
+                                    (3 . "dim chartreuse")
+                                    (3 . "plaid beige")
+                                    (5 . "mirrored crimson"))))))
 
 (run-tests solution-tests 'verbose)
 (run-tests day4-tests 'verbose)
