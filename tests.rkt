@@ -11,7 +11,8 @@
   (prefix-in day6: "day6.rkt")
   (prefix-in day7: "day7.rkt")
   (prefix-in day8: "day8.rkt")
-  (prefix-in day9: "day9.rkt"))
+  (prefix-in day9: "day9.rkt")
+  (prefix-in day10: "day10.rkt"))
 
 (define-test-suite 
   solution-tests
@@ -32,7 +33,8 @@
   (check-equal? (day8:part1) 1814)
   (check-equal? (day8:part2) 1056)
   (check-equal? (day9:part1) 138879426)
-  (check-equal? (day9:part2) 23761694))
+  (check-equal? (day9:part2) 23761694)
+  (check-equal? (day10:part1) 1700))
 
 (define-test-suite
   day4-tests
