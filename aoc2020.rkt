@@ -8,7 +8,8 @@
   (prefix-in day5: "day5.rkt")
   (prefix-in day6: "day6.rkt")
   (prefix-in day7: "day7.rkt")
-  (prefix-in day8: "day8.rkt"))
+  (prefix-in day8: "day8.rkt")
+  (prefix-in day9: "day9.rkt"))
 
 (printf (format "1-1: ~a\n" (day1:part1)))
 (printf (format "1-2: ~a\n" (day1:part2)))
@@ -26,3 +27,5 @@
 (printf (format "7-2: ~a\n" (day7:part2)))
 (printf (format "8-1: ~a\n" (day8:part1)))
 (printf (format "8-2: ~a\n" (day8:part2)))
+(printf (format "9-1: ~a\n" (day9:part1)))
+(printf (format "9-2: ~a\n" (day9:part2)))

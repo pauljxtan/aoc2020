@@ -1,5 +1,7 @@
 #lang racket
 
+(require "utils.rkt")
+
 (provide part1 part2 parse-line)
 
 (define input (file->lines "input/d7"))
@@ -35,5 +37,3 @@
 (define (count-descendants bag)
   (apply + (map (match-lambda [(cons n c) (* n (+ 1 (count-descendants c)))])
                 (hash-ref bag-hash bag))))
-
-(define (list-member? x xs) (not (equal? (member x xs) #f)))
