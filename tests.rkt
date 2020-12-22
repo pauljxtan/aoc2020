@@ -34,7 +34,8 @@
   (check-equal? (day8:part2) 1056)
   (check-equal? (day9:part1) 138879426)
   (check-equal? (day9:part2) 23761694)
-  (check-equal? (day10:part1) 1700))
+  (check-equal? (day10:part1) 1700)
+  (check-equal? (day10:part2) 12401793332096))
 
 (define-test-suite
   day4-tests
