@@ -6,4 +6,4 @@
 
 (define (list-slice lst start end) (take (drop lst start) (- end start)))
 
-(define (count-value value lst) (count (curry = value) lst))
+(define (count-value value lst) (count (curry equal? value) lst))
