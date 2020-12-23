@@ -10,24 +10,22 @@
 
 (define (valid1? line)
   (match (parse-line line)
-         [(list min-valid max-valid letter password)
-          (let* ([regex-not-letter (regexp (string-append "[^" letter "]"))]
-                 [count ((compose string-length
-                                  (curryr string-replace regex-not-letter ""))
-                         password)])
-            (and (>= count min-valid) (<= count max-valid)))]))
+         [(list x y c s) (let ([n (count-char s c)])
+                           (and (>= n x) (<= n y)))]))
+
+(define (count-char str char)
+  ((compose string-length (curry replace-not-char str)) char))
+
+(define (replace-not-char str char)
+  (string-replace str (regex-not-char char) ""))
+
+(define (regex-not-char char) (regexp (string-append "[^" char "]")))
 
 (define (valid2? line)
   (match (parse-line line)
-         [(list i j letter password)
-          (xor
-            (equal? (substring password (- i 1) i) letter)
-            (equal? (substring password (- j 1) j) letter))]))
+         [(list i j c s) (xor (equal? (substring s (- i 1) i) c)
+                              (equal? (substring s (- j 1) j) c))]))
 
 (define (parse-line line)
   (match (regexp-match #px"(\\d+)-(\\d+) (\\w): (\\w+)" line)
-         [(list _ min-valid max-valid letter password)
-          (list (string->number min-valid)
-                (string->number max-valid)
-                letter
-                password)]))
+         [(list _ x y c s) (list (string->number x) (string->number y) c s)]))

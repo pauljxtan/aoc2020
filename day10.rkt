@@ -1,17 +1,17 @@
 #lang racket
 
-(require memoize "utils.rkt")
+(require memoize point-free "utils.rkt")
 
 (provide part1 part2)
 
-(define input (sort (map string->number (file->lines "input/d10")) <))
+(define/compose get-input (curryr sort <) (curry map string->number) file->lines)
 
 (define (part1)
-  (let ([diffs (rating-diffs input)])
+  (let ([diffs (rating-diffs (get-input "input/d10"))])
     (* (count-value 1 diffs) (count-value 3 diffs))))
 
 (define (part2)
-  (let ([ratings (all-ratings input)])
+  (let ([ratings (all-ratings (get-input "input/d10"))])
     (count-paths ratings (last ratings))))
 
 (define (rating-diffs adapters) 
