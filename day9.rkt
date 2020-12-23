@@ -1,10 +1,12 @@
 #lang racket
 
-(require "utils.rkt")
+(require point-free "utils.rkt")
 
 (provide part1 part2)
 
-(define input (map string->number (file->lines "input/d9")))
+(define/compose get-input (curry map string->number) file->lines)
+
+(define input (get-input "input/d9"))
 
 (define (part1) (find-not-sum-of-pair (take input 25) (drop input 25)))
 

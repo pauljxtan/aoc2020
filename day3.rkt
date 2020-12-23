@@ -1,8 +1,12 @@
 #lang racket
 
+(require point-free)
+
 (provide part1 part2)
 
-(define input (map string->list (file->lines "input/d3")))
+(define/compose get-input (curry map string->list) file->lines)
+
+(define input (get-input "input/d3"))
 
 (define (part1) (traverse 1 3))
 

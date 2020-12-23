@@ -1,10 +1,12 @@
 #lang racket
 
-(require "utils.rkt")
+(require point-free "utils.rkt")
 
 (provide part1 part2)
 
-(define input (map string->list (file->lines "input/d11")))
+(define/compose get-input (curry map string->list) file->lines)
+
+(define input (get-input "input/d11"))
 
 (define num-rows (length input))
 (define num-cols (length (first input)))
@@ -13,11 +15,15 @@
 
 (define (part1)
   (let ([final-grid (step1-until-unchanged input)])
-    (apply + (map (curry count-value #\#) final-grid))))
+    (apply + ((count-occupied-over-grid) final-grid))))
 
 (define (part2)
   (let ([final-grid (step2-until-unchanged input)])
-    (apply + (map (curry count-value #\#) final-grid))))
+    (apply + (( count-value-over-grid #\# ) final-grid))))
+
+(define (count-occupied-over-grid) (count-value-over-grid #\#))
+
+(define (count-value-over-grid value) (curry map (curry count-value value)))
 
 (define (step1-until-unchanged grid)
   (let ([next-grid (step1 grid)])

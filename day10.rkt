@@ -4,14 +4,19 @@
 
 (provide part1 part2)
 
-(define/compose get-input (curryr sort <) (curry map string->number) file->lines)
+(define/compose get-input
+                (curryr sort <)
+                (curry map string->number) 
+                file->lines)
+
+(define input (get-input "input/d10"))
 
 (define (part1)
-  (let ([diffs (rating-diffs (get-input "input/d10"))])
+  (let ([diffs (rating-diffs input)])
     (* (count-value 1 diffs) (count-value 3 diffs))))
 
 (define (part2)
-  (let ([ratings (all-ratings (get-input "input/d10"))])
+  (let ([ratings (all-ratings input)])
     (count-paths ratings (last ratings))))
 
 (define (rating-diffs adapters) 
