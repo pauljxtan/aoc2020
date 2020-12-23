@@ -8,9 +8,9 @@
 
 (define input (get-input "input/d1"))
 
-(define (part1) (foldl * 1 (from-just! (find-pair input 2020))))
+(define (part1) (apply * (from-just! (find-pair input 2020))))
 
-(define (part2) (foldl * 1 (from-just! (find-triplet input 2020))))
+(define (part2) (apply * (from-just! (find-triplet input 2020))))
 
 (define (find-pair entries sum)
   (match entries
