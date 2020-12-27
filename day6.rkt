@@ -22,7 +22,7 @@
 
 (define (count-all-yes group)
   (match (map person-set group)
-         [(list x xs ...) (set-count (foldl set-intersect x xs))]))
+    [(list x xs ...) (set-count (foldl set-intersect x xs))]))
 
 (define/compose person-set list->set string->list)
 

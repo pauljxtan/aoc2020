@@ -14,14 +14,14 @@
 
 (define (find-pair entries sum)
   (match entries
-         ['() nothing]
-         [(list x xs ...) (let ([y (- sum x)]) (if (member y xs)
-                                                 (just (list x y))
-                                                 (find-pair xs sum)))]))
+    ['() nothing]
+    [(list x xs ...) (let ([y (- sum x)]) (if (member y xs)
+                                            (just (list x y))
+                                            (find-pair xs sum)))]))
 
 (define (find-triplet entries sum)
   (match entries
-         ['() nothing]
-         [(list x xs ...) (match (find-pair xs (- sum x)) 
-                                 [(just (list y z)) (just (list x y z))] 
-                                 [nothing (find-triplet xs sum)])]))
+    ['() nothing]
+    [(list x xs ...) (match (find-pair xs (- sum x)) 
+                       [(just (list y z)) (just (list x y z))] 
+                       [nothing (find-triplet xs sum)])]))

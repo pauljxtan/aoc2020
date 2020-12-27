@@ -10,8 +10,7 @@
 
 (define (valid1? line)
   (match (parse-line line)
-         [(list x y c s) (let ([n (count-char s c)])
-                           (and (>= n x) (<= n y)))]))
+    [(list x y c s) (let ([n (count-char s c)]) (and (>= n x) (<= n y)))]))
 
 (define (count-char str char)
   ((compose string-length (curry replace-not-char str)) char))
@@ -23,9 +22,9 @@
 
 (define (valid2? line)
   (match (parse-line line)
-         [(list i j c s) (xor (equal? (substring s (- i 1) i) c)
-                              (equal? (substring s (- j 1) j) c))]))
+    [(list i j c s) (xor (equal? (substring s (- i 1) i) c)
+                         (equal? (substring s (- j 1) j) c))]))
 
 (define (parse-line line)
   (match (regexp-match #px"(\\d+)-(\\d+) (\\w): (\\w+)" line)
-         [(list _ x y c s) (list (string->number x) (string->number y) c s)]))
+    [(list _ x y c s) (list (string->number x) (string->number y) c s)]))

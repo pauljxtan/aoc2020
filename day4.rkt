@@ -30,8 +30,8 @@
 
 (define (field-in-range? pattern low high passport)
   (match (regexp-match pattern passport)
-         [(list _ n) (number-in-range? n low high)]
-         [#f #f]))
+    [(list _ n) (number-in-range? n low high)]
+    [#f #f]))
 
 (define valid-byr? (curry field-in-range? #px"byr:(\\d{4})\\b" 1920 2002))
 

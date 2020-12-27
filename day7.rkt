@@ -17,13 +17,13 @@
 
 (define (parse-line line)
   (match (regexp-match #px"(\\w+ \\w+) bags contain (.*)" line)
-         [(list _ parent "no other bags.") (list parent '())]
-         [(list _ parent rest)
-          (list parent (map (match-lambda [(list n c)
-                                           (cons (string->number n) c)])
-                            (regexp-match* #px"(\\d+) (\\w+ \\w+) bags*"
-                                           rest
-                                           #:match-select cdr)))]))
+    [(list _ parent "no other bags.") (list parent '())]
+    [(list _ parent rest)
+     (list parent (map (match-lambda [(list n c)
+                                      (cons (string->number n) c)])
+                       (regexp-match* #px"(\\d+) (\\w+ \\w+) bags*"
+                                      rest
+                                      #:match-select cdr)))]))
 
 (define bag-hash
   (foldl (match-lambda** [((list k v) h) (hash-set h k v)])

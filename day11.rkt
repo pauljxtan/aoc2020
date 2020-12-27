@@ -35,9 +35,9 @@
     (lambda (row col) (let ([seat (grid-ref grid row col)]
                             [adj-occ (count-adjacent-occupied grid row col)])
                         (match seat
-                               [#\L (if (= adj-occ 0) #\# seat)]
-                               [#\# (if (>= adj-occ 4) #\L seat)]
-                               [_ seat]) ))))
+                          [#\L (if (= adj-occ 0) #\# seat)]
+                          [#\# (if (>= adj-occ 4) #\L seat)]
+                          [_ seat]) ))))
 
 (define (step2-until-unchanged grid)
   (let ([next-grid (step2 grid)])
@@ -49,9 +49,9 @@
     (lambda (row col) (let ([seat (grid-ref grid row col)]
                             [vis-occ (count-visible-occupied grid row col)])
                         (match seat
-                               [#\L (if (= vis-occ 0) #\# seat)]
-                               [#\# (if (>= vis-occ 5) #\L seat)]
-                               [_ seat]) ))))
+                          [#\L (if (= vis-occ 0) #\# seat)]
+                          [#\# (if (>= vis-occ 5) #\L seat)]
+                          [_ seat]) ))))
 
 (define (map-grid-cells grid func)
   (map (lambda (row)
@@ -87,21 +87,21 @@
     (if (outside-grid? grid row-to-check col-to-check)
       #f
       (match (grid-ref grid row-to-check col-to-check)
-             [#\# #t]
-             [#\L #f]
-             [_ (visible-occupied? grid row-to-check col-to-check direction)]))))
+        [#\# #t]
+        [#\L #f]
+        [_ (visible-occupied? grid row-to-check col-to-check direction)]))))
 
 (define (get-row-to-check row direction)
   (+ row (match direction
-                [(or 'top-left 'top 'top-right) -1]
-                [(or 'left 'right) 0]
-                [(or 'bottom-left 'bottom 'bottom-right) +1])))
+           [(or 'top-left 'top 'top-right) -1]
+           [(or 'left 'right) 0]
+           [(or 'bottom-left 'bottom 'bottom-right) +1])))
 
 (define (get-col-to-check col direction)
   (+ col (match direction
-                [(or 'top-left 'left 'bottom-left) -1]
-                [(or 'top 'bottom) 0]
-                [(or 'top-right 'right 'bottom-right) +1])))
+           [(or 'top-left 'left 'bottom-left) -1]
+           [(or 'top 'bottom) 0]
+           [(or 'top-right 'right 'bottom-right) +1])))
 
 ; Treat positions outside the grid as floor
 (define (grid-ref grid row col)

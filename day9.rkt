@@ -13,17 +13,15 @@
 (define (part2) (let ([range (find-range input (part1) 0 1)])
                   (+ (apply min range) (apply max range))))
 
-(define (find-not-sum-of-pair nums-with-pair nums-to-check)
-  (match* (nums-with-pair nums-to-check) 
-          [((list x xs ...) (list y ys ...)) 
-           (if (sum-of-pair? y nums-with-pair)
-             (find-not-sum-of-pair (append xs (list y)) ys) y)]))
+(define/match (find-not-sum-of-pair nums-with-pair nums-to-check)
+  [((list x xs ...) (list y ys ...)) 
+   (if (sum-of-pair? y nums-with-pair)
+     (find-not-sum-of-pair (append xs (list y)) ys) y)])
 
-(define (sum-of-pair? num nums)
-  (match nums
-         ['() #f]
-         [(list x xs ...) (or (list-member? (- num x) nums)
-                              (sum-of-pair? num xs))]))
+(define/match (sum-of-pair? num nums)
+  [(_ '()) #f]
+  [(_ (list x xs ...)) (or (list-member? (- num x) nums)
+                           (sum-of-pair? num xs))])
 
 (define (find-range nums sum start end)
   (let* ([xs (list-slice nums start end)]
